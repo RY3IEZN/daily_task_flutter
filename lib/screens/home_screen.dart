@@ -3,11 +3,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   static const routeName = "/home-screen";
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +23,7 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       body: Center(
-        child: Text("No task Added yet", style: GoogleFonts.montserrat()),
+        child: Text("No task Added yet just for git", style: GoogleFonts.montserrat()),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -26,7 +31,7 @@ class HomeScreen extends StatelessWidget {
               context: context,
               builder: (BuildContext context) => Container(
                     padding: EdgeInsets.all(20),
-                    //height: 500,
+                    height: 250,
                     color: Colors.blueGrey,
                     child: Column(
                       children: [
@@ -43,6 +48,54 @@ class HomeScreen extends StatelessWidget {
                                 child: Icon(Icons.close))
                           ],
                         ),
+                        Divider(thickness: 1),
+                        SizedBox(height: 20),
+                        TextField(
+                          decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                  borderSide: BorderSide(color: Colors.blue)),
+                              fillColor: Colors.white,
+                              filled: true,
+                              hintText: "Enter Task",
+                              hintStyle: GoogleFonts.montserrat()),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          width: MediaQuery.of(context).size.width,
+                          child: Row(
+                            children: [
+                              Container(
+                                width:
+                                    MediaQuery.of(context).size.width / 2 - 30,
+                                child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        primary: Colors.white,
+                                        onPrimary: Colors.black),
+                                    onPressed: (() =>
+                                        print("reset button pressed")),
+                                    child: Text(
+                                      "Reset",
+                                      style: GoogleFonts.montserrat(),
+                                    )),
+                              ),
+                              Container(
+                                width:
+                                    MediaQuery.of(context).size.width / 2 - 30,
+                                child: ElevatedButton(
+                                    onPressed: (() =>
+                                        print("Add button pressed")),
+                                    child: Text(
+                                      "Add",
+                                      style: GoogleFonts.montserrat(),
+                                    )),
+                              )
+                            ],
+                          ),
+                        )
                       ],
                     ),
                   ));
